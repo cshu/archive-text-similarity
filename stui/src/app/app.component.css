@@ -1,0 +1,5 @@
+.topcont{margin: 2vmin; border: 1vmin solid #b1b1b1; padding: 4vmin; border-radius: 2vmin}
+.horizontaldivide{margin: 4vmin 0; border-radius: 1vmin; line-height: 0; text-align: center;}
+.horizontaldivide span{font-weight: bold; font-size: 2vmin; border-radius: 1vmin; background-color: #b1b1b1; padding: 2vmin;text-align: center;}
+.horizontaldivide:before{ content: " "; display: block; border-top: 0.5vmin solid #b1b1b1; border-bottom: 0.5vmin solid #b1b1b1;}
+.form-label{margin: 2vmin}
