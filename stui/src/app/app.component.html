@@ -3,7 +3,7 @@
  <form>
   <div class="input-group">
    <label for="formFileLg" class="input-group-text">Upload a text file:</label>
-   <input class="form-control form-control-lg" #textFile type="file" required>
+   <input class="form-control form-control-lg" #textFile type="file" accept=".txt" required>
   </div>
   <button class="btn btn-info submit-btn" type="button" (click)="submitFile($event)">Submit</button>
  </form>

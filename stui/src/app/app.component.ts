@@ -13,10 +13,21 @@ export class AppComponent {
   submitFile(ev: Event) {
     console.log(ev);
     console.log('submit file');
-    if (!this.textFile.nativeElement.reportValidity()){
-      console.log('no file');
+    if (!this.textFile.nativeElement.files.length) {
+      this.textFile.nativeElement.setCustomValidity('Please choose a file for archiving.');
+      this.textFile.nativeElement.reportValidity();
       return;
     }
+    if (this.textFile.nativeElement.files[0].size < 100) {
+      this.textFile.nativeElement.setCustomValidity('Small files are not allowed.');
+      this.textFile.nativeElement.reportValidity();
+      return;
+    }
+    this.textFile.nativeElement.setCustomValidity('');
+    //if (!this.textFile.nativeElement.reportValidity()){
+    //  console.log('no file');
+    //  return;
+    //}
   }
   submitText(ev: Event) {
     console.log(ev);
