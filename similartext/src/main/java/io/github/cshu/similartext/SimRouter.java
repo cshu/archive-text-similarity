@@ -18,6 +18,6 @@ public class SimRouter {
   public RouterFunction<ServerResponse> route(SimHandler simHandler) {
 
     return RouterFunctions
-      .route(POST("/newtext").and(accept(MediaType.TEXT_HTML)), simHandler::newtext);
+      .route(POST("/newtext").and(accept(MediaType.APPLICATION_JSON)), simHandler::newtext);
   }
 }

@@ -13,7 +13,7 @@ import reactor.core.publisher.Mono;
 public class SimHandler {
 
   public Mono<ServerResponse> newtext(ServerRequest request) {
-    return ServerResponse.ok().contentType(MediaType.TEXT_HTML)
-      .body(BodyInserters.fromValue("Hello, Spring!"));
+    return ServerResponse.ok().contentType(MediaType.APPLICATION_JSON)
+      .body(BodyInserters.fromValue("{}"));
   }
 }

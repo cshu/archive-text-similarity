@@ -1,5 +1,76 @@
-.topcont{margin: 2vmin; border: 1vmin solid #b1b1b1; padding: 4vmin; border-radius: 2vmin}
-.horizontaldivide{margin: 4vmin 0; border-radius: 1vmin; line-height: 0; text-align: center;}
-.horizontaldivide span{font-weight: bold; font-size: 2vmin; border-radius: 1vmin; background-color: #b1b1b1; padding: 2vmin;text-align: center;}
+.titlecont{text-align:center; margin: 2vmin; font-weight: bold;color: #004c55;font-size: 4vmin; font-style: oblique;}
+.titlebgnew
+{
+    background-color: blue;
+    display: inline-block;
+    width: 35vmin;
+    height: 4vmin;
+    position: absolute;
+    opacity: 30%;
+    margin-top: 3vmin;
+}
+.titlebghist
+{
+    background-color: blue;
+    display: inline-block;
+    width: 55vmin;
+    height: 4vmin;
+    position: absolute;
+    opacity: 30%;
+    margin-top: 3vmin;
+}
+.topcont{margin: 2vmin; margin-bottom: 7vmin; border: 1vmin solid #b1b1b1; padding: 4vmin; border-radius: 2vmin}
+.horizontalline{
+/*margin: 3vmin 0;*/
+height: 8vmin;
+position: relative;
+font-size: 0;
+}
+#horizontaldivideb{
+	padding: 0;
+	height: 0vmin;
+	border-width:0.5vmin;
+	border-color:#b1b1b1;
+	display: inline-block;
+	width:100%;
+vertical-align: middle;
+	position: absolute;
+	border-style: solid;
+  margin: auto;
+  top: 0; left: 0; bottom: 0; right: 0;
+}
+.horizontalline span{
+  margin: auto;
+  position: absolute;
+  top: 0; left: 0; bottom: 0; right: 0;
+font-size: 1.5vmin;
+line-height: 4vmin;
+height: 4vmin;
+width: 11vmin;
+display: inline-block;
+position: absolute;
+font-weight: bold;
+border-radius: 1vmin;
+background-color: #b1b1b1;
+padding: 0vmin;
+vertical-align: middle;
+text-align: center;
+color: white;
+}
+/*.horizontaldivide{margin: 4vmin 0vmin; position:absolute; border-radius: 1vmin; line-height: 0; text-align: center;}
+.horizontaldivide span{display: inline-block;position: absolute;font-weight: bold; font-size: 2vmin; border-radius: 1vmin; background-color: #b1b1b1; padding: 2vmin;text-align: center;color: white;}
 .horizontaldivide:before{ content: " "; display: block; border-top: 0.5vmin solid #b1b1b1; border-bottom: 0.5vmin solid #b1b1b1;}
-.form-label{margin: 2vmin}
+*/
+/*.form-label{margin: 2vmin}*/
+.submit-btn{margin-top: 1vmin; width:100%; font-weight: bold; padding: 2vmin; text-transform: uppercase;color: #004c55;}
+.input-group-text{color: #004c55; font-weight: bold;}
+
+.accordion
+{
+ margin:2vmin;
+}
+.spinner-border
+{
+ margin-left: 2vmin;
+ color: #6ebaff;
+}
