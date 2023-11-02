@@ -3,9 +3,9 @@
  <form>
   <div class="input-group">
    <label for="formFileLg" class="input-group-text">Upload a text file:</label>
-   <input class="form-control form-control-lg" id="formFileLg" type="file">
+   <input class="form-control form-control-lg" #textFile type="file" required>
   </div>
-  <button class="btn btn-info submit-btn" type="button">Submit</button>
+  <button class="btn btn-info submit-btn" type="button" (click)="submitFile($event)">Submit</button>
  </form>
  <div class="horizontalline">
  <div id="horizontaldivideb"></div>
@@ -14,9 +14,9 @@
  <form>
   <div class="input-group">
     <span class="input-group-text">Paste text here:</span>
-    <textarea class="form-control" aria-label="Paste text here:"></textarea>
+    <textarea class="form-control" aria-label="Paste text here:" required minlength="100" #directText [(ngModel)]="pastedText" [ngModelOptions]="{standalone: true}"></textarea>
   </div>
-  <button class="btn btn-info submit-btn" type="button">Submit</button>
+  <button class="btn btn-info submit-btn" type="button" (click)="submitText($event)">Submit</button>
  </form>
 </div>
 <div class="titlecont"><span class="titlebghist"></span>Submitted Text</div>
