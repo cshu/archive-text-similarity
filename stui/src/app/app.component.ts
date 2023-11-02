@@ -8,6 +8,10 @@ import { Component, ElementRef, ViewChild } from '@angular/core';
 export class AppComponent {
   @ViewChild('textFile', { static: false }) public textFile!: ElementRef;
   @ViewChild('directText', { static: false }) public directText!: ElementRef;
+
+  readonly minSize: number = 100;
+
+  sock: WebSocket | undefined;
   title = 'stui';
   pastedText: string = '';
   submitFile(ev: Event) {
@@ -18,7 +22,7 @@ export class AppComponent {
       this.textFile.nativeElement.reportValidity();
       return;
     }
-    if (this.textFile.nativeElement.files[0].size < 100) {
+    if (this.textFile.nativeElement.files[0].size < this.minSize) {
       this.textFile.nativeElement.setCustomValidity('Small files are not allowed.');
       this.textFile.nativeElement.reportValidity();
       return;
@@ -28,6 +32,7 @@ export class AppComponent {
     //  console.log('no file');
     //  return;
     //}
+    this.upload();
   }
   submitText(ev: Event) {
     console.log(ev);
@@ -36,5 +41,15 @@ export class AppComponent {
       console.log('text is too short');
       return;
     }
+    console.log(this.pastedText);
+    this.upload();
+  }
+  upload() {
+    //console.log(location);
+    //sock.send()
+  }
+  ngOnInit() {
+    console.log('oninit');
+    this.sock = new WebSocket('ws://'+location.hostname+':8080/defHandler');
   }
 }

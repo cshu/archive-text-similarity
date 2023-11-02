@@ -14,7 +14,7 @@
  <form>
   <div class="input-group">
     <span class="input-group-text">Paste text here:</span>
-    <textarea class="form-control" aria-label="Paste text here:" required minlength="100" #directText [(ngModel)]="pastedText" [ngModelOptions]="{standalone: true}"></textarea>
+    <textarea class="form-control" aria-label="Paste text here:" required [minLength]="minSize" #directText [(ngModel)]="pastedText" [ngModelOptions]="{standalone: true}"></textarea>
   </div>
   <button class="btn btn-info submit-btn" type="button" (click)="submitText($event)">Submit</button>
  </form>

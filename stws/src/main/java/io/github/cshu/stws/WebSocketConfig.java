@@ -10,7 +10,7 @@ public class WebSocketConfig implements WebSocketConfigurer {
 
 	@Override
 	public void registerWebSocketHandlers(WebSocketHandlerRegistry registry) {
-		registry.addHandler(defHandler(), "/defHandler");
+		registry.addHandler(defHandler(), "/defHandler").setAllowedOrigins("*");
 	}
 
 	@Bean
