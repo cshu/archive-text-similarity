@@ -1,11 +1,27 @@
-<div class="titlecont"><span class="titlebgnew"></span>New Text</div>
+<div class="modal fade" id="defdialog" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5" id="modalLabel">Dialog Title</h1>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        Modal Body
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary">Primary</button>
+      </div>
+    </div>
+  </div>
+</div><div class="titlecont"><span class="titlebgnew"></span>New Text</div>
 <div class="topcont">
  <form>
   <div class="input-group">
    <label for="formFileLg" class="input-group-text">Upload a text file:</label>
    <input class="form-control form-control-lg" #textFile type="file" accept=".txt" required>
   </div>
-  <button class="btn btn-info submit-btn" type="button" (click)="submitFile($event)">Submit</button>
+  <button class="btn btn-info submit-btn" type="button" (click)="submitFile($event)" [disabled]="!allowUpload">Submit</button>
  </form>
  <div class="horizontalline">
  <div id="horizontaldivideb"></div>
@@ -16,7 +32,7 @@
     <span class="input-group-text">Paste text here:</span>
     <textarea class="form-control" aria-label="Paste text here:" required [minLength]="minSize" #directText [(ngModel)]="pastedText" [ngModelOptions]="{standalone: true}"></textarea>
   </div>
-  <button class="btn btn-info submit-btn" type="button" (click)="submitText($event)">Submit</button>
+  <button class="btn btn-info submit-btn" type="button" (click)="submitText($event)" [disabled]="!allowUpload">Submit</button>
  </form>
 </div>
 <div class="titlecont"><span class="titlebghist"></span>Submitted Text</div>
