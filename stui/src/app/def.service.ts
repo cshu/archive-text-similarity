@@ -25,7 +25,7 @@ export class DefService {
     return this.http.post<RandomToken>(this.url + '/token', '');
   }
   sim(sseid: string, hashinhex: string, filename: string): Observable<SimResp> {
-    return this.http.post<SimResp>(this.url+'/sim', {id: sseid, hash: hashinhex, name: filename});
+    return this.http.post<SimResp>(this.url+'/sim', new Similarity(sseid, hashinhex, filename));
   }
   //send(sid: string, filename: string, text: Blob): Observable<string> {
     //let hdrs = new HttpHeaders();

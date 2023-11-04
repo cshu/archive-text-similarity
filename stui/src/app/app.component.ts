@@ -3,6 +3,7 @@ import { DefService } from './def.service';
 import { Modal } from 'bootstrap';
 import { RandomToken } from './random-token';
 import { SimResp } from './sim-resp';
+import { SimResult } from './sim-result';
 
 //note binding html elements with fields below means Proxy Pattern
 
@@ -97,6 +98,7 @@ export class AppComponent {
           case 'sim':
             console.log('sim');
             console.log(msg);
+            let simresult = msg as SimResult;
             break;
         }
       };

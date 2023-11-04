@@ -1,5 +1,7 @@
 export class Similarity {
-    id!: string;
-    hash!: string;
-    name!: string;
+  constructor(
+    public id: string,
+    public hash: string,
+    public name: string
+  ) {}
 }
