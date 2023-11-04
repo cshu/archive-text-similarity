@@ -10,5 +10,6 @@ import java.util.*;
 public class NewSseid {
   String type = "NewSseid";
   String id;
+
   NewSseid() {}
 }

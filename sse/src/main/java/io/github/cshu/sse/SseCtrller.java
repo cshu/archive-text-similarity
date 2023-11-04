@@ -15,16 +15,16 @@ public class SseCtrller {
 
   @RequestMapping("/sse")
   public @ResponseBody SseEmitter handle(@RequestParam String id) {
-    //System.out.println(id);
-    var emitter= Util.mkSseEmitter(id);
-		try{
-		var msg = new SseMsg();
-		msg.type = "established";
-		Gson gson = new Gson();
-		emitter.send(SseEmitter.event().name("message").data(gson.toJson(msg)));
-		}catch(IOException e){
-		emitter.completeWithError(e);
-		}
-		return emitter;
+    // System.out.println(id);
+    var emitter = Util.mkSseEmitter(id);
+    try {
+      var msg = new SseMsg();
+      msg.type = "established";
+      Gson gson = new Gson();
+      emitter.send(SseEmitter.event().name("message").data(gson.toJson(msg)));
+    } catch (IOException e) {
+      emitter.completeWithError(e);
+    }
+    return emitter;
   }
 }

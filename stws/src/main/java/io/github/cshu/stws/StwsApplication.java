@@ -15,11 +15,11 @@ import org.apache.kafka.clients.admin.*;
 
 @SpringBootApplication
 public class StwsApplication {
-//    @Autowired
-//    private SimpMessagingTemplate msgSender;
+  //    @Autowired
+  //    private SimpMessagingTemplate msgSender;
 
-//@Autowired
-//public SimpMessageSendingOperations messagingTemplate;
+  // @Autowired
+  // public SimpMessageSendingOperations messagingTemplate;
   public static void main(String[] args) {
     SpringApplication.run(StwsApplication.class, args);
   }
@@ -31,7 +31,7 @@ public class StwsApplication {
       public void addCorsMappings(CorsRegistry registry) {
         registry
             .addMapping("/**")
-	    .allowCredentials(false)
+            .allowCredentials(false)
             .allowedMethods("GET", "POST", "PUT", "DELETE")
             .allowedHeaders("*")
             .allowedOrigins("*");
@@ -44,12 +44,14 @@ public class StwsApplication {
     return TopicBuilder.name("finished").partitions(10).replicas(1).build();
   }
 
-//  @KafkaListener(id = "finListen", topics = "finished")
-//  public void listen(String in) {
-//    System.out.println(in);
-//SimpMessageHeaderAccessor headerAccessor = SimpMessageHeaderAccessor.create(SimpMessageType.MESSAGE);
-//headerAccessor.setSessionId(in);
-//headerAccessor.setLeaveMutable(true);
-//    messagingTemplate.convertAndSendToUser(in, "/defHandler", "FINISHED", headerAccessor.getMessageHeaders());
-//  }
+  //  @KafkaListener(id = "finListen", topics = "finished")
+  //  public void listen(String in) {
+  //    System.out.println(in);
+  // SimpMessageHeaderAccessor headerAccessor =
+  // SimpMessageHeaderAccessor.create(SimpMessageType.MESSAGE);
+  // headerAccessor.setSessionId(in);
+  // headerAccessor.setLeaveMutable(true);
+  //    messagingTemplate.convertAndSendToUser(in, "/defHandler", "FINISHED",
+  // headerAccessor.getMessageHeaders());
+  //  }
 }

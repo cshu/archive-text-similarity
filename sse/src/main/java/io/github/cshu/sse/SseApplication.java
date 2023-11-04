@@ -15,9 +15,9 @@ import org.apache.kafka.clients.admin.*;
 @SpringBootApplication
 public class SseApplication {
 
-	public static void main(String[] args) {
-		SpringApplication.run(SseApplication.class, args);
-	}
+  public static void main(String[] args) {
+    SpringApplication.run(SseApplication.class, args);
+  }
 
   @Bean
   public WebMvcConfigurer corsConfigurer() {
@@ -26,7 +26,7 @@ public class SseApplication {
       public void addCorsMappings(CorsRegistry registry) {
         registry
             .addMapping("/**")
-	    .allowCredentials(false)
+            .allowCredentials(false)
             .allowedMethods("GET", "POST", "PUT", "DELETE")
             .allowedHeaders("*")
             .allowedOrigins("*");
@@ -43,6 +43,7 @@ public class SseApplication {
   public void listen(String in) {
     System.out.println(in);
     Util.sendResultToUser(in);
-    //messagingTemplate.convertAndSendToUser(in, "/defHandler", "FINISHED", headerAccessor.getMessageHeaders());
+    // messagingTemplate.convertAndSendToUser(in, "/defHandler", "FINISHED",
+    // headerAccessor.getMessageHeaders());
   }
 }

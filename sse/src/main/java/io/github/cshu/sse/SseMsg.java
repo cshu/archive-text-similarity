@@ -9,5 +9,6 @@ import java.util.*;
 
 public class SseMsg {
   String type;
+
   SseMsg() {}
 }

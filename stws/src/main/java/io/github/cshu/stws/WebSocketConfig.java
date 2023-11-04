@@ -6,8 +6,6 @@ import org.springframework.scheduling.annotation.*;
 import org.springframework.web.socket.*;
 import org.springframework.messaging.simp.config.*;
 
-
-
 @Configuration
 @EnableWebSocket
 public class WebSocketConfig implements WebSocketConfigurer {
@@ -23,11 +21,12 @@ public class WebSocketConfig implements WebSocketConfigurer {
   }
 }
 
-////@Configuration
-////@EnableWebSocket
-////@EnableWebSocketMessageBroker
-////@EnableScheduling
-////public class WebSocketConfig implements /*WebSocketConfigurer,*/WebSocketMessageBrokerConfigurer {
+//// @Configuration
+//// @EnableWebSocket
+//// @EnableWebSocketMessageBroker
+//// @EnableScheduling
+//// public class WebSocketConfig implements
+// /*WebSocketConfigurer,*/WebSocketMessageBrokerConfigurer {
 ////
 //////  @Override
 //////  public void registerWebSocketHandlers(WebSocketHandlerRegistry registry) {
@@ -49,4 +48,4 @@ public class WebSocketConfig implements WebSocketConfigurer {
 ////  public void registerStompEndpoints(StompEndpointRegistry registry) {
 ////    registry.addEndpoint("/socket").allowCredentials(false).setAllowedOrigins("*").withSockJS();
 ////  }
-////}
+//// }

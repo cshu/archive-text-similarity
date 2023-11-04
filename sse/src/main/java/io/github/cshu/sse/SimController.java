@@ -15,18 +15,18 @@ public class SimController {
 
   @Autowired private KafkaTemplate<String, String> kafkaTemplate;
 
-	@PostMapping("/sim")
-	public SimResp sim(@RequestBody Similarity similarity) {
-		System.out.println(similarity.id());
-		System.out.println(similarity.hash());
-      var hashinhexfnm = "/tmp/st/text/" + similarity.hash();
-      //var hashdir = new File(hashinhexfnm);
-      if ((new File(hashinhexfnm + "/result")).exists()) {
-		//undone make a response with content
-		return new SimResp("OK");
-      }
-	Gson gson = new Gson();
-      	kafkaTemplate.send("new", gson.toJson(similarity));
-		return new SimResp("OK");
-	}
+  @PostMapping("/sim")
+  public SimResp sim(@RequestBody Similarity similarity) {
+    System.out.println(similarity.id());
+    System.out.println(similarity.hash());
+    var hashinhexfnm = "/tmp/st/text/" + similarity.hash();
+    // var hashdir = new File(hashinhexfnm);
+    if ((new File(hashinhexfnm + "/result")).exists()) {
+      // undone make a response with content
+      return new SimResp("OK");
+    }
+    Gson gson = new Gson();
+    kafkaTemplate.send("new", gson.toJson(similarity));
+    return new SimResp("OK");
+  }
 }

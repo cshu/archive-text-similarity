@@ -16,8 +16,8 @@ import com.google.gson.*;
 
 public class DefHandler extends TextWebSocketHandler {
 
-    //@Autowired
-    //private SimpMessagingTemplate msgSender;
+  // @Autowired
+  // private SimpMessagingTemplate msgSender;
   @Autowired private KafkaTemplate<String, String> kafkaTemplate;
 
   @Override
@@ -26,8 +26,8 @@ public class DefHandler extends TextWebSocketHandler {
     // session.sendMessage(new TextMessage(sid));
   }
 
-  //@Override
-  //public void handleTextMessage(WebSocketSession session, TextMessage message) {
+  // @Override
+  // public void handleTextMessage(WebSocketSession session, TextMessage message) {
   //  // System.out.println(message.getPayload());
   //  Gson gson = new Gson();
   //  DefMsg msg = gson.fromJson(message.getPayload(), DefMsg.class);
@@ -49,7 +49,7 @@ public class DefHandler extends TextWebSocketHandler {
   //    // System.out.println(msg.hash);
   //    // fixme msg.name should be saved to some kind of data store
   //  }
-  //}
+  // }
 
   @Override
   public void handleBinaryMessage(WebSocketSession session, BinaryMessage message) {
