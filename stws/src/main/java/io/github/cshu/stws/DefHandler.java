@@ -75,6 +75,7 @@ public class DefHandler extends TextWebSocketHandler {
     } catch (Exception e) {
       e.printStackTrace(System.err);
       // fixme warn user
+      return;
     }
   }
 }

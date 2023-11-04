@@ -6,6 +6,9 @@ import { RandomToken } from './random-token';
 import { SimResp } from './sim-resp';
 import { Similarity } from './similarity';
 
+//note this Service uses Adapter Pattern
+//note injectable providedin root make this a singleton
+
 @Injectable({
   providedIn: 'root'
 })
@@ -21,8 +24,8 @@ export class DefService {
   token(): Observable<RandomToken> {
     return this.http.post<RandomToken>(this.url + '/token', '');
   }
-  sim(sseid: string, hashinhex: string): Observable<SimResp> {
-    return this.http.post<SimResp>(this.url+'/sim', {id: sseid, hash: hashinhex});
+  sim(sseid: string, hashinhex: string, filename: string): Observable<SimResp> {
+    return this.http.post<SimResp>(this.url+'/sim', {id: sseid, hash: hashinhex, name: filename});
   }
   //send(sid: string, filename: string, text: Blob): Observable<string> {
     //let hdrs = new HttpHeaders();

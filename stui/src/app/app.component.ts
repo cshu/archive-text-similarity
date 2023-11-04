@@ -4,6 +4,8 @@ import { Modal } from 'bootstrap';
 import { RandomToken } from './random-token';
 import { SimResp } from './sim-resp';
 
+//note binding html elements with fields below means Proxy Pattern
+
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
@@ -27,6 +29,7 @@ export class AppComponent {
   allowUpload: boolean = false;
   defdialog: Modal | undefined;
   //recv: (msgev: MessageEvent) => void = this.recvLog;
+  filesInTransfer: string[] = [];
   submitFile(ev: Event) {
     console.log(ev);
     console.log('submit file');
@@ -62,6 +65,7 @@ export class AppComponent {
   upload(filename: string, text: Blob) {
     let sock = this.sock!;
     sock.send(text);
+    this.filesInTransfer.push(filename);
     //undone add row to the loading area
     //
     ////this.allowUpload = false;
@@ -90,6 +94,10 @@ export class AppComponent {
           case 'established':
             console.log('est');
             break;
+          case 'sim':
+            console.log('sim');
+            console.log(msg);
+            break;
         }
       };
     });
@@ -99,7 +107,7 @@ export class AppComponent {
     this.sock.onerror = (ev) => { console.log('sock error', ev); };
     this.sock.onmessage = (ev) => {
       console.log('sock message', ev.data);
-      this.def.sim(this.sseid, ev.data).subscribe((data: SimResp)=>{
+      this.def.sim(this.sseid, ev.data, this.filesInTransfer.shift()!).subscribe((data: SimResp)=>{
         console.log('simresp', data);
       });
       //if (!this.sid) this.sid = ev.data;

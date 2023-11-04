@@ -1,6 +1,9 @@
 package io.github.cshu.sse;
 
+import java.nio.charset.*;
+import java.nio.file.*;
 import java.io.*;
+import java.util.*;
 import java.util.concurrent.*;
 import org.springframework.web.servlet.mvc.method.annotation.SseEmitter;
 import com.google.gson.*;
@@ -17,6 +20,7 @@ public class Util {
     return base64Encoder.encodeToString(randomBytes);
   }
 
+  //note here I am using Factory Pattern
   public static SseEmitter mkSseEmitter(String sseid) {
     // Gson gson = new Gson();
     // var sseid = mkToken();
@@ -42,8 +46,34 @@ public class Util {
     return emitter;
   }
 
+  public static String readSimResult(String hash, String name, Gson gson) {
+  try{
+      var resFiles = new File("/tmp/st/text/" + hash+"/result").listFiles();
+	var lst = new ArrayList<SimPair>();
+  	for (var resFile : resFiles) {
+		var similar = Double.parseDouble(new String(Files.readAllBytes(resFile.toPath()), StandardCharsets.UTF_8));
+		var other = resFile.getName();
+		var namefile = Paths.get("/tmp/st/text/"+other+"/name");
+		if (!namefile.toFile().isFile()) continue;
+		var fnm = new String(Files.readAllBytes(namefile), StandardCharsets.UTF_8);
+		lst.add(new SimPair(other, fnm, similar));
+	}
+      var retval = new SimResult("", hash, name, lst, "sim");
+    return gson.toJson(retval);
+    }catch(IOException e){
+	e.printStackTrace(System.err);
+    	return mkErrorSimResult("Unexpected error occurred during file comparison.", hash, name, gson);
+    }
+  }
+
   public static void sendResultToUser(String in) {
-    var ews = liveSse.get(in);
+    Gson gson = new Gson();
+    Similarity sim = gson.fromJson(in, Similarity.class);
+    sendResultToUser(sim, gson);
+  }
+  public static void sendResultToUser(Similarity sim, Gson gson) {
+    final String simresult= readSimResult(sim.hash(), sim.name(), gson);
+    var ews = liveSse.get(sim.id());
     if (null == ews) {
       Thread thread =
           Thread.ofVirtual()
@@ -58,16 +88,26 @@ public class Util {
                     } catch (InterruptedException e) {
                       e.printStackTrace(System.err);
                     }
-                    var ewsretry = liveSse.get(in);
+                    var ewsretry = liveSse.get(sim.id());
                     if (null == ewsretry) return;
-                    sendResultToUser(ewsretry);
+                    sendResultToUser(ewsretry, simresult);
                   });
       return;
     }
-    sendResultToUser(ews);
+    sendResultToUser(ews, simresult);
   }
 
-  public static void sendResultToUser(EmitterWithSeq ews) {
-    // undone
+  public static void sendResultToUser(EmitterWithSeq ews, String simresult) {
+    SseEmitter emitter = ews.emitter;
+    try{
+    emitter.send(SseEmitter.event().name("message").data(simresult));
+    }catch(IOException e){
+	e.printStackTrace(System.err);
+	//todo write to db for user to view later
+    }
+  }
+
+  public static String mkErrorSimResult(String msg, String hash, String name, Gson gson) {
+  	return gson.toJson(new SimResult(msg, hash, name, new ArrayList<SimPair>(0), "sim"));
   }
 }
