@@ -8,3 +8,50 @@
  margin-left: 2vmin;
  color: #6ebaff;
 }
+
+
+
+.htacc-accordion {
+  display: block;
+ margin:1vmin;
+}
+
+.htacc-accordion-item {
+  display: block;
+  border: solid 1px #ccc;
+}
+
+.htacc-accordion-item + .htacc-accordion-item {
+  border-top: none;
+}
+
+.htacc-accordion-item-header {
+  display: flex;
+  align-content: center;
+  justify-content: space-between;
+}
+
+.htacc-accordion-item-description {
+  font-size: 0.85em;
+  color: #999;
+}
+
+.htacc-accordion-item-header,
+.htacc-accordion-item-body {
+  padding: 16px;
+}
+
+.htacc-accordion-item-header:hover {
+  cursor: pointer;
+  background-color: #eee;
+}
+
+.htacc-accordion-item:first-child {
+  border-top-left-radius: 4px;
+  border-top-right-radius: 4px;
+}
+
+.htacc-accordion-item:last-child {
+  border-bottom-left-radius: 4px;
+  border-bottom-right-radius: 4px;
+}

@@ -1,3 +1,43 @@
+<cdk-accordion class="htacc-accordion">
+  <cdk-accordion-item
+    *ngFor="let item of rows; index as rowidx"
+    #accordionItem="cdkAccordionItem"
+    class="htacc-accordion-item"
+    role="button"
+    tabindex="0"
+    [attr.id]="'accordion-header-' + item.hash"
+    [attr.aria-expanded]="accordionItem.expanded"
+    [attr.aria-controls]="'accordion-body-' + item.hash">
+    <div class="htacc-accordion-item-header" (click)="accordionItem.toggle()">
+      {{ item.name }}
+      <span *ngIf="item.type === 'newreq'" class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
+      <span class="htacc-accordion-item-description">
+        Click to {{ accordionItem.expanded ? 'close' : 'open' }}
+      </span>
+    </div>
+    <div
+      class="htacc-accordion-item-body"
+      role="region"
+      [style.display]="accordionItem.expanded ? '' : 'none'"
+      [attr.id]="'accordion-body-' + item.hash"
+      [attr.aria-labelledby]="'accordion-header-' + item.hash">
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th scope="col" colspan="2">{{item.hash}}</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let other of item.others">
+                            <td>{{other.name}}</td>
+                            <td>{{other.similar}}</td>
+                        </tr>
+                    </tbody>
+                </table>
+    </div>
+  </cdk-accordion-item>
+</cdk-accordion>
+
 <div class="accordion" id="histtext">
     <div class="accordion-item" *ngFor="let row of rows; index as rowidx">
         <h2 class="accordion-header">
@@ -11,19 +51,6 @@
         <div id="{{'histtextrowcollapse'+row.hash}}" class="accordion-collapse collapse"
             data-bs-parent="histtext">
             <div class="accordion-body">
-                <table class="table">
-                    <thead>
-                        <tr>
-                            <th scope="col" colspan="2">{{row.hash}}</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr *ngFor="let other of row.others">
-                            <td>{{other.name}}</td>
-                            <td>{{other.similar}}</td>
-                        </tr>
-                    </tbody>
-                </table>
             </div>
         </div>
     </div>
