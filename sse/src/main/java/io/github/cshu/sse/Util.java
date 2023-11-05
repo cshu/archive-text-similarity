@@ -20,14 +20,14 @@ public class Util {
     return base64Encoder.encodeToString(randomBytes);
   }
 
-  //note here I am using Factory Pattern
+  // note here I am using Factory Pattern
   public static SseEmitter mkSseEmitter(String sseid) {
     // Gson gson = new Gson();
     // var sseid = mkToken();
     // var newsse = new NewSseid();
     // newsse.id = sseid;
     // var msg = gson.toJson(newsse);
-    SseEmitter emitter = new SseEmitter(20_000L);
+    SseEmitter emitter = new SseEmitter(900_000L);
     var ews = new EmitterWithSeq(emitter, System.currentTimeMillis());
     emitter.onCompletion(
         () -> {
@@ -46,23 +46,31 @@ public class Util {
     return emitter;
   }
 
+  public static String readNameOfText(String hash) throws IOException {
+    var namefile = Paths.get("/tmp/st/text/" + hash + "/name");
+    return new String(Files.readAllBytes(namefile), StandardCharsets.UTF_8);
+  }
+
   public static String readSimResult(String hash, String name, Gson gson) {
-  try{
-      var resFiles = new File("/tmp/st/text/" + hash+"/result").listFiles();
-	var lst = new ArrayList<SimPair>();
-  	for (var resFile : resFiles) {
-		var similar = Double.parseDouble(new String(Files.readAllBytes(resFile.toPath()), StandardCharsets.UTF_8));
-		var other = resFile.getName();
-		var namefile = Paths.get("/tmp/st/text/"+other+"/name");
-		if (!namefile.toFile().isFile()) continue;
-		var fnm = new String(Files.readAllBytes(namefile), StandardCharsets.UTF_8);
-		lst.add(new SimPair(other, fnm, similar));
-	}
+    try {
+      var resFiles = new File("/tmp/st/text/" + hash + "/result").listFiles();
+      var lst = new ArrayList<SimPair>();
+      for (var resFile : resFiles) {
+        var similar =
+            Double.parseDouble(
+                new String(Files.readAllBytes(resFile.toPath()), StandardCharsets.UTF_8));
+        var other = resFile.getName();
+        var namefile = Paths.get("/tmp/st/text/" + other + "/name");
+        if (!namefile.toFile().isFile()) continue;
+        var fnm = new String(Files.readAllBytes(namefile), StandardCharsets.UTF_8);
+        lst.add(new SimPair(other, fnm, similar));
+      }
       var retval = new SimResult("", hash, name, lst, "sim");
-    return gson.toJson(retval);
-    }catch(IOException e){
-	e.printStackTrace(System.err);
-    	return mkErrorSimResult("Unexpected error occurred during file comparison.", hash, name, gson);
+      return gson.toJson(retval);
+    } catch (IOException e) {
+      e.printStackTrace(System.err);
+      return mkErrorSimResult(
+          "Unexpected error occurred during file comparison.", hash, name, gson);
     }
   }
 
@@ -71,8 +79,9 @@ public class Util {
     Similarity sim = gson.fromJson(in, Similarity.class);
     sendResultToUser(sim, gson);
   }
+
   public static void sendResultToUser(Similarity sim, Gson gson) {
-    final String simresult= readSimResult(sim.hash(), sim.name(), gson);
+    final String simresult = readSimResult(sim.hash(), sim.name(), gson);
     var ews = liveSse.get(sim.id());
     if (null == ews) {
       Thread thread =
@@ -84,7 +93,7 @@ public class Util {
                     try {
                       Thread.sleep(
                           5000); // give it a second chance due to possible intermittent connection
-                                 // of user
+                      // of user
                     } catch (InterruptedException e) {
                       e.printStackTrace(System.err);
                     }
@@ -99,15 +108,15 @@ public class Util {
 
   public static void sendResultToUser(EmitterWithSeq ews, String simresult) {
     SseEmitter emitter = ews.emitter;
-    try{
-    emitter.send(SseEmitter.event().name("message").data(simresult));
-    }catch(IOException e){
-	e.printStackTrace(System.err);
-	//todo write to db for user to view later
+    try {
+      emitter.send(SseEmitter.event().name("message").data(simresult));
+    } catch (IOException e) {
+      e.printStackTrace(System.err);
+      // todo write to db for user to view later
     }
   }
 
   public static String mkErrorSimResult(String msg, String hash, String name, Gson gson) {
-  	return gson.toJson(new SimResult(msg, hash, name, new ArrayList<SimPair>(0), "sim"));
+    return gson.toJson(new SimResult(msg, hash, name, new ArrayList<SimPair>(0), "sim"));
   }
 }

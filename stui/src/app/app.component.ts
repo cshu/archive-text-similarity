@@ -3,7 +3,9 @@ import { DefService } from './def.service';
 import { Modal } from 'bootstrap';
 import { RandomToken } from './random-token';
 import { SimResp } from './sim-resp';
+import { SimPair } from './sim-pair';
 import { SimResult } from './sim-result';
+import { HistTextComponent } from './hist-text/hist-text.component';
 
 //note binding html elements with fields below means Proxy Pattern
 
@@ -17,6 +19,7 @@ export class AppComponent {
   }
   @ViewChild('textFile', { static: false }) public textFile!: ElementRef;
   @ViewChild('directText', { static: false }) public directText!: ElementRef;
+  //@ViewChild('ht') ht:HistTextComponent;
 
   readonly minSize: number = 100;
   //readonly recvLog = (msgev: MessageEvent) => { console.log('recv', msgev); };
@@ -30,7 +33,9 @@ export class AppComponent {
   allowUpload: boolean = false;
   defdialog: Modal | undefined;
   //recv: (msgev: MessageEvent) => void = this.recvLog;
-  filesInTransfer: string[] = [];
+  //filesInTransfer: string[] = [];
+  fileInTransfer: string = '';
+  htrows: SimResult[] = [];
   submitFile(ev: Event) {
     console.log(ev);
     console.log('submit file');
@@ -64,9 +69,13 @@ export class AppComponent {
     this.upload('Untitled', new Blob([this.pastedText]));
   }
   upload(filename: string, text: Blob) {
+      this.allowUpload = false;
     let sock = this.sock!;
     sock.send(text);
-    this.filesInTransfer.push(filename);
+    //this.filesInTransfer.push(filename);
+    this.fileInTransfer = filename;
+    this.htrows.unshift({ error: '', hash: '', name: filename, others: ([] as SimPair[]), type: 'newreq' } as SimResult);
+
     //undone add row to the loading area
     //
     ////this.allowUpload = false;
@@ -99,6 +108,9 @@ export class AppComponent {
             console.log('sim');
             console.log(msg);
             let simresult = msg as SimResult;
+            let idx = this.htrows.findIndex((elem) => elem.hash === simresult.hash);
+            if (-1 === idx) this.htrows.push(simresult);
+            else if (this.htrows[idx].others.length !== simresult.others.length) this.htrows[idx] = simresult;
             break;
         }
       };
@@ -109,8 +121,24 @@ export class AppComponent {
     this.sock.onerror = (ev) => { console.log('sock error', ev); };
     this.sock.onmessage = (ev) => {
       console.log('sock message', ev.data);
-      this.def.sim(this.sseid, ev.data, this.filesInTransfer.shift()!).subscribe((data: SimResp)=>{
+      let newfilename = this.fileInTransfer;
+      this.fileInTransfer = '';
+      this.allowUpload = true;
+      let idx = this.htrows.findIndex((elem) => elem.hash === ev.data);
+      if (-1 !== idx) this.htrows.splice(idx, 1);
+      this.htrows[0].hash = ev.data;
+      this.def.sim(this.sseid, ev.data, newfilename).subscribe((data: SimResp) => {
         console.log('simresp', data);
+        switch (data.result) {
+          case 'OK':
+            break;
+          case 'END':
+            //todo remove spinning icon at bottom of page because nothing more to load
+            break;
+          default:
+            //todo show some error message
+            break;
+        }
       });
       //if (!this.sid) this.sid = ev.data;
       //this.recv(ev);

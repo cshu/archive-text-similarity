@@ -19,26 +19,27 @@ public class SimController {
 
   @PostMapping("/sim")
   public SimResp sim(@RequestBody Similarity similarity) {
-    try{
-    System.out.println(similarity.id());
-    System.out.println(similarity.hash());
+    try {
+      System.out.println(similarity.id());
+      System.out.println(similarity.hash());
       if (!similarity.hash().matches("[A-Za-z0-9]+")) {
-      	// fixme do something about malicious request?
-	return new SimResp("ERROR");
+        // fixme do something about malicious request?
+        return new SimResp("ERROR");
       }
-    var hashinhexfnm = "/tmp/st/text/" + similarity.hash();
-    Files.write(Paths.get(hashinhexfnm+"/name"), similarity.name().getBytes(StandardCharsets.UTF_8));
-    // var hashdir = new File(hashinhexfnm);
-    Gson gson = new Gson();
-    if ((new File(hashinhexfnm + "/result")).exists()) {
-      Util.sendResultToUser(similarity, gson);
+      var hashinhexfnm = "/tmp/st/text/" + similarity.hash();
+      Files.write(
+          Paths.get(hashinhexfnm + "/name"), similarity.name().getBytes(StandardCharsets.UTF_8));
+      // var hashdir = new File(hashinhexfnm);
+      Gson gson = new Gson();
+      if ((new File(hashinhexfnm + "/result")).exists()) {
+        Util.sendResultToUser(similarity, gson);
+        return new SimResp("OK");
+      }
+      kafkaTemplate.send("new", gson.toJson(similarity));
       return new SimResp("OK");
-    }
-    kafkaTemplate.send("new", gson.toJson(similarity));
-    return new SimResp("OK");
-    }catch(Exception e){
-    	e.printStackTrace(System.err);
-	return new SimResp("Unexpected error occurred");
+    } catch (Exception e) {
+      e.printStackTrace(System.err);
+      return new SimResp("Unexpected error occurred");
     }
   }
 }

@@ -5,10 +5,12 @@ import { HttpClientModule } from '@angular/common/http';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
+import { HistTextComponent } from './hist-text/hist-text.component';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    HistTextComponent
   ],
   imports: [
     HttpClientModule,
