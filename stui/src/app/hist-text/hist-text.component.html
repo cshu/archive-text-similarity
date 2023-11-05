@@ -17,12 +17,12 @@
       <table class="table">
         <thead>
           <tr>
-            <th scope="col" colspan="2">{{item.hash}}</th>
+            <th scope="col" colspan="2"><a href="#" (click)="$event.preventDefault(); onDownload(item.hash)">{{item.hash}}</a></th>
           </tr>
         </thead>
         <tbody>
           <tr *ngFor="let other of item.others">
-            <td>{{other.name}}</td>
+            <td><a href="#" (click)="$event.preventDefault(); onDownload(other.hash)">{{other.name}}</a></td>
             <td>{{other.similar}}</td>
           </tr>
         </tbody>

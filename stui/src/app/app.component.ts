@@ -209,6 +209,4 @@ export class AppComponent {
   }
 }
 
-//todo add download link
-
 //todo the already displayed rows will not auto-update even if other newer files are uploaded and proved to be similar to them. Currently you are using findIndex to search for match, but you should do findIndex on hash of `others` too.

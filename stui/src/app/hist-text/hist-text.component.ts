@@ -18,4 +18,7 @@ export class HistTextComponent implements OnChanges {
   expandedIndex = 0;
   @Input() rows: SimResult[] = [];
   @Output() rowsChange = new EventEmitter<SimResult[]>();
+  onDownload(hash: string) {
+    open(location.protocol + '//' + location.hostname + ':8081/download/'+hash, '_blank')?.focus();
+  }
 }
