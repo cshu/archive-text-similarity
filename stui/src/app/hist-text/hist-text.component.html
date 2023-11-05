@@ -1,41 +1,32 @@
 <cdk-accordion class="htacc-accordion">
-  <cdk-accordion-item
-    *ngFor="let item of rows; index as rowidx"
-    #accordionItem="cdkAccordionItem"
-    class="htacc-accordion-item"
-    role="button"
-    tabindex="0"
-    [attr.id]="'accordion-header-' + item.hash"
-    [attr.aria-expanded]="accordionItem.expanded"
-    [attr.aria-controls]="'accordion-body-' + item.hash">
+  <cdk-accordion-item *ngFor="let item of rows; index as rowidx" #accordionItem="cdkAccordionItem"
+    class="htacc-accordion-item" role="button" tabindex="0" [attr.id]="'accordion-header-' + item.hash"
+    [attr.aria-expanded]="accordionItem.expanded" [attr.aria-controls]="'accordion-body-' + item.hash">
     <div class="htacc-accordion-item-header" (click)="accordionItem.toggle()">
       {{ item.name }}
-      <span *ngIf="item.type === 'newreq'; else htaidesc" class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
-      <ng-template  #htaidesc>
-      <span class="htacc-accordion-item-description">
-        Click to {{ accordionItem.expanded ? 'close' : 'open' }}
-      </span>
+      <span *ngIf="item.type === 'newreq'; else htaidesc" class="spinner-border spinner-border-sm" role="status"
+        aria-hidden="true"></span>
+      <ng-template #htaidesc>
+        <span class="htacc-accordion-item-description">
+          Click to {{ accordionItem.expanded ? 'close' : 'open' }}
+        </span>
       </ng-template>
     </div>
-    <div
-      class="htacc-accordion-item-body"
-      role="region"
-      [style.display]="accordionItem.expanded ? '' : 'none'"
-      [attr.id]="'accordion-body-' + item.hash"
-      [attr.aria-labelledby]="'accordion-header-' + item.hash">
-                <table class="table">
-                    <thead>
-                        <tr>
-                            <th scope="col" colspan="2">{{item.hash}}</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr *ngFor="let other of item.others">
-                            <td>{{other.name}}</td>
-                            <td>{{other.similar}}</td>
-                        </tr>
-                    </tbody>
-                </table>
+    <div class="htacc-accordion-item-body" role="region" [style.display]="accordionItem.expanded ? '' : 'none'"
+      [attr.id]="'accordion-body-' + item.hash" [attr.aria-labelledby]="'accordion-header-' + item.hash">
+      <table class="table">
+        <thead>
+          <tr>
+            <th scope="col" colspan="2">{{item.hash}}</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let other of item.others">
+            <td>{{other.name}}</td>
+            <td>{{other.similar}}</td>
+          </tr>
+        </tbody>
+      </table>
     </div>
   </cdk-accordion-item>
 </cdk-accordion>

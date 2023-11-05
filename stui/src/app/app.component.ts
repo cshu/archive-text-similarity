@@ -39,6 +39,8 @@ export class AppComponent {
   htrows: SimResult[] = [];
   uploadOffset: number = 0;
   uploadBlob: Blob = new Blob([]);
+  exhaustedAllText: boolean = false;
+  tryingToLoadMore: boolean = false;
   submitFile(ev: Event) {
     console.log(ev);
     console.log('submit file');
@@ -103,7 +105,7 @@ export class AppComponent {
     this.defdialog = new Modal('#defdialog', { keyboard: true });
     this.def.token().subscribe((data: RandomToken) => {
       this.sseid = data.token;
-      this.allowUpload = true;
+      if (this.sock && this.sock.readyState == WebSocket.OPEN) this.allowUpload = true;
       this.es = new EventSource(location.protocol + '//' + location.hostname + ':8081/sse?id=' + encodeURIComponent(this.sseid));
       this.es.onmessage = (ev) => {
         console.log('onmsg', ev.data);
@@ -111,6 +113,19 @@ export class AppComponent {
         switch (msg.type) {
           case 'established':
             console.log('est');
+            if (this.exhaustedAllText || this.htrows.length) break;
+            this.def.rsim(this.sseid).subscribe((data: SimResp) => {
+              switch (data.result) {
+                case 'OK':
+                  break;
+                case 'END':
+                  this.exhaustedAllText = true;
+                  break;
+                default:
+                  //todo show some error message
+                  break;
+              }
+            });
             break;
           case 'sim':
             console.log('sim');
@@ -133,7 +148,7 @@ export class AppComponent {
       };
     });
     this.sock = new WebSocket('ws://' + location.hostname + ':8080/defHandler');
-    this.sock.onopen = (ev) => { console.log('sock open'); };
+    this.sock.onopen = (ev) => { if (this.sseid) this.allowUpload = true; console.log('sock open'); };
     this.sock.onclose = (ev) => { console.log('sock close'); };
     this.sock.onerror = (ev) => { console.log('sock error', ev); };
     this.sock.onmessage = (ev) => {
@@ -174,6 +189,26 @@ export class AppComponent {
       //this.recv(ev);
     };
   }
+  onMore(event: MouseEvent) {
+    this.tryingToLoadMore = true;
+    this.def.rsim(this.sseid).subscribe((data: SimResp) => {
+      setTimeout(() => {
+        this.tryingToLoadMore = false;
+      }, 2000);
+      switch (data.result) {
+        case 'OK':
+          break;
+        case 'END':
+          this.exhaustedAllText = true;
+          break;
+        default:
+          //todo show some error message
+          break;
+      }
+    });
+  }
 }
+
+//todo add download link
 
 //todo the already displayed rows will not auto-update even if other newer files are uploaded and proved to be similar to them. Currently you are using findIndex to search for match, but you should do findIndex on hash of `others` too.

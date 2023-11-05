@@ -1,23 +1,22 @@
-th{
-    color: #9e9e9e;
-    font-size: 1.4vmin;
+th {
+  color: #9e9e9e;
+  font-size: 1.4vmin;
 }
 
 td {
-    font-size: 1.6vmin;
+  font-size: 1.6vmin;
 }
 
-.spinner-border
-{
- margin-left: 2vmin;
- color: #6ebaff;
+.spinner-border {
+  margin-left: 2vmin;
+  color: #6ebaff;
 }
 
 
 
 .htacc-accordion {
   display: block;
- margin:1vmin;
+  margin: 1vmin;
 }
 
 .htacc-accordion-item {
@@ -25,7 +24,7 @@ td {
   border: solid 1px #ccc;
 }
 
-.htacc-accordion-item + .htacc-accordion-item {
+.htacc-accordion-item+.htacc-accordion-item {
   border-top: none;
 }
 

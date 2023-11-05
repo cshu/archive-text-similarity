@@ -1,6 +1,6 @@
-import { Component,EventEmitter,Input, OnChanges, Output, SimpleChanges } from '@angular/core';
-import {NgFor, NgIf} from '@angular/common';
-import {CdkAccordionModule} from '@angular/cdk/accordion';
+import { Component, EventEmitter, Input, OnChanges, Output, SimpleChanges } from '@angular/core';
+import { NgFor, NgIf } from '@angular/common';
+import { CdkAccordionModule } from '@angular/cdk/accordion';
 import { SimResult } from '../sim-result';
 
 @Component({
@@ -10,7 +10,7 @@ import { SimResult } from '../sim-result';
   standalone: true,
   imports: [CdkAccordionModule, NgFor, NgIf],
 })
-export class HistTextComponent  implements OnChanges {
+export class HistTextComponent implements OnChanges {
   ngOnChanges(changes: SimpleChanges): void {
     //throw new Error('Method not implemented.');
   }//
