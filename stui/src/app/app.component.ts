@@ -108,9 +108,14 @@ export class AppComponent {
             console.log('sim');
             console.log(msg);
             let simresult = msg as SimResult;
+            if (simresult.error !== '') {
+              //todo show error to user?
+              break;
+            }
             let idx = this.htrows.findIndex((elem) => elem.hash === simresult.hash);
             if (-1 === idx) this.htrows.push(simresult);
             else if (this.htrows[idx].others.length !== simresult.others.length) this.htrows[idx] = simresult;
+            else this.htrows[idx].type = simresult.type;
             break;
         }
       };
@@ -145,3 +150,5 @@ export class AppComponent {
     };
   }
 }
+
+//todo the already displayed rows will not auto-update even if other newer files are uploaded and proved to be similar to them. Currently you are using findIndex to search for match, but you should do findIndex on hash of `others` too.
