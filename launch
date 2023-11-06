@@ -1,0 +1,16 @@
+cd kafka
+echo ZOOKEEPER
+bash bin/zookeeper-server-start.sh config/zookeeper.properties &
+sleep 8
+echo KAFKA
+bash bin/kafka-server-start.sh config/server.properties &
+sleep 8
+cd ..
+echo SIMILARTEXT
+java -jar similartext.jar &
+echo STWS
+java -jar stws.jar &
+echo SSE
+java -jar sse.jar &
+echo STWORK
+java -jar stwork.jar

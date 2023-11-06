@@ -18,12 +18,4 @@ public class SimilartextApplication {
 		ConfigurableApplicationContext context = SpringApplication.run(SimilartextApplication.class, args);
 	}
 
-    @Bean
-    public NewTopic topic() {
-        return TopicBuilder.name("new")
-                .partitions(10)
-                .replicas(1)
-                .build();
-    }
-
 }
