@@ -34,7 +34,7 @@ public class DefHandler extends TextWebSocketHandler {
       for (byte octet : session.getId().getBytes(StandardCharsets.UTF_8))
         sbforid.append(String.format("%02x", octet));
       var idinhex = sbforid.toString();
-      var datafilename = Paths.get("/tmp/st/partial/" + idinhex);
+      var datafilename = Paths.get(partialPathPrefix + idinhex);
       switch (message.getPayload()) {
         case "BEGIN":
           Files.deleteIfExists(datafilename);
@@ -47,7 +47,7 @@ public class DefHandler extends TextWebSocketHandler {
           var sb = new StringBuilder();
           for (byte octet : hash) sb.append(String.format("%02x", octet));
           var hashinhex = sb.toString();
-          var hashinhexfnm = "/tmp/st/text/" + hashinhex;
+          var hashinhexfnm = textPathPrefix + hashinhex;
           var hashdir = new File(hashinhexfnm);
           // if (hashdir.exists())
           if (hashdir.mkdirs()) {
@@ -67,27 +67,6 @@ public class DefHandler extends TextWebSocketHandler {
       // fixme warn user
       return;
     }
-    //// System.out.println(message.getPayload());
-    // Gson gson = new Gson();
-    // DefMsg msg = gson.fromJson(message.getPayload(), DefMsg.class);
-    // if ("similarity".equals(msg.action)) {
-    //  if (!msg.hash.matches("[A-Za-z0-9]+")) {
-    //    // fixme do something about malicious request?
-    //    //session.close();
-    //    return;
-    //  }
-    //  var hashinhexfnm = "/tmp/st/text/" + msg.hash;
-    //  // var hashdir = new File(hashinhexfnm);
-    //  if ((new File(hashinhexfnm + "/result")).exists()) {
-    //    // undone send result to user
-    //  } else {
-    //    //kafkaTemplate.send("new", msg.hash);
-    //  }
-    //    kafkaTemplate.send("finished", session.getId());
-    //  // System.out.println(msg.name);
-    //  // System.out.println(msg.hash);
-    //  // fixme msg.name should be saved to some kind of data store
-    // }
   }
 
   @Override
@@ -100,8 +79,8 @@ public class DefHandler extends TextWebSocketHandler {
       for (byte octet : session.getId().getBytes(StandardCharsets.UTF_8))
         sbforid.append(String.format("%02x", octet));
       var idinhex = sbforid.toString();
-      (new File("/tmp/st/partial/")).mkdirs();
-      var datafilename = Paths.get("/tmp/st/partial/" + idinhex);
+      (new File(partialPathPrefix)).mkdirs();
+      var datafilename = Paths.get(partialPathPrefix + idinhex);
       Files.write(datafilename, blob, StandardOpenOption.APPEND, StandardOpenOption.CREATE);
       session.sendMessage(new TextMessage("CONT."));
     } catch (Exception e) {
@@ -110,4 +89,6 @@ public class DefHandler extends TextWebSocketHandler {
       return;
     }
   }
+  static final String textPathPrefix = "/tmp/st/text/";
+  static final String partialPathPrefix = "/tmp/st/partial/";
 }

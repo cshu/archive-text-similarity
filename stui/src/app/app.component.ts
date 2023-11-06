@@ -21,8 +21,8 @@ export class AppComponent {
   @ViewChild('directText', { static: false }) public directText!: ElementRef;
   //@ViewChild('ht') ht:HistTextComponent;
 
-  readonly uploadMsgSizeLimit: number = 2000;
-  readonly minSize: number = 100;
+  readonly uploadMsgSizeLimit: number = 2000;//fixme magic number
+  readonly minSize: number = 100;//fixme magic number
   //readonly recvLog = (msgev: MessageEvent) => { console.log('recv', msgev); };
 
   es: EventSource | undefined;
@@ -147,6 +147,7 @@ export class AppComponent {
         }
       };
     });
+    //fixme magic number for port
     this.sock = new WebSocket('ws://' + location.hostname + ':8080/defHandler');
     this.sock.onopen = (ev) => { if (this.sseid) this.allowUpload = true; console.log('sock open'); };
     this.sock.onclose = (ev) => { console.log('sock close'); };

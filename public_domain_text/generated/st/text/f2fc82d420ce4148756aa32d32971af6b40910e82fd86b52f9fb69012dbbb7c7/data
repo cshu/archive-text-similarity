@@ -1,0 +1,236 @@
+
+Search
+Write
+
+Eric
+Get unlimited access to the best of Medium for less than $1/week.
+Become a member
+
+
+For peace of mind, use Rust
+Eric
+Eric
+
+2 min read
+·
+Apr 16
+
+
+
+
+
+Rust and Golang are both great, but there are times when Rust can make things easier. And there is something about Rust that I have never felt in other languages.
+
+Example #1
+My program downloads huge data and writes to a local file (or a socket, or a DB, or whatever), I allocate 1MB memory as buffer to receive data and then write to file. When using Golang, the function signature of passing data to file writer might be something like writeToLocal(buffer []byte)
+
+The question is: after calling writeToLocal once, should I reuse the 1MB buffer for receiving data from internet? Or should I allocate a new buffer? It is not impossible for code insidewriteToLocal to keep a pointer pointing to the buffer I passed to it. If I modify my buffer , I might overwrite some data that are not yet written to disk.
+
+In such cases, I read the source code or docs of writeToLocal to confirm whether it is safe to do certain things. Just to play safe.
+
+What if I use Rust? Such a function either takes a reference or ownership of the buffer so I don’t need to think about it at all.
+
+Example #2
+When I have 2 goroutines in Golang program, I can pass some data back and forth with channels. When I pass string or []byte , I don’t worry about a thing. But I started to worry when passing things like []SomeStruct where SomeStruct can contain pointers pointing to SomeOtherStruct or slice or whatever.
+
+When using Rust, I don’t need to think about it at all. If I pass something that cannot be passed, it won’t compile.
+
+Similarly, when using functions/classes in various languages like Java, C#, Golang, I found myself constantly opening docs web pages and doing CTRL-F to search for the words “thread safe”. Sometimes I have to read docs very carefully to confirm doing certain things in certain ways are safe/unsafe.
+
+When using Rust, you spend much less time for that.
+
+Example #3
+There is a function DeepEqual in Golang for comparing slice/struct/etc. When I used it for the first time, I was thinking: does the equality comparison ends at second level? Or it can go deeper than that when you have slice of slice? In the end, I read the docs carefully to make sure I know how it works. For most other languages, there are similar functions and I always spend time reading the docs. Not to mention, after a period time I forget what I learned, and then I found myself reading the same docs again and again.
+
+In Rust, I just use == everywhere and don’t even think about it. If children can do == , then parent can do == . Usually it is that simple in Rust.
+
+Rust
+Programming Languages
+Programming
+Multithreading
+
+
+
+
+Eric
+Written by Eric
+0 Followers
+Edit profile
+More from Eric
+Fix my Linux Wi-Fi
+Eric
+Eric
+
+Fix my Linux Wi-Fi
+Recently my laptop suddenly started to have a Wi-Fi issue. Sometimes it suddenly cannot connect to the internet. The intermittent…
+1 min read
+·
+Sep 26
+
+
+Always follow the newest trend when choosing software?
+Eric
+Eric
+
+Always follow the newest trend when choosing software?
+I was watching primeagen reacts “I Love Neovim But I WONT Use It” and somebody in the video was mentioning that too many plugins in neovim…
+2 min read
+·
+Aug 27
+
+
+Intellectually manageable code and DRY
+Eric
+Eric
+
+Intellectually manageable code and DRY
+I read this post mentioning DRY is “pretty bad design system for code”:
+3 min read
+·
+Aug 3
+
+
+See all from Eric
+Recommended from Medium
+Asynchronous Design Patterns in Rust
+Luis Soares
+Luis Soares
+
+in
+
+Dev Genius
+
+Asynchronous Design Patterns in Rust
+Hey there, Rustacean! 🦀
+
+·
+8 min read
+·
+5 days ago
+159
+
+
+
+Rust Traits Are Not Interfaces
+Davide Toniolo
+Davide Toniolo
+
+Rust Traits Are Not Interfaces
+A discussion about Rust traits
+4 min read
+·
+May 29
+6
+
+2
+
+
+
+Lists
+
+
+
+It's never too late or early to start something
+15 stories
+·
+192 saves
+
+
+
+General Coding Knowledge
+20 stories
+·
+535 saves
+
+
+
+Coding & Development
+11 stories
+·
+258 saves
+
+
+Stories to Help You Grow as a Software Developer
+19 stories
+·
+517 saves
+Rust vs. C++: Comparing Performance, Safety, and Ecosystem
+Alexander Obregon
+Alexander Obregon
+
+Rust vs. C++: Comparing Performance, Safety, and Ecosystem
+Introduction
+4 min read
+·
+May 20
+7
+
+3
+
+
+
+Why Every Developer Should Try Rust
+Lucas Scott
+Lucas Scott
+
+in
+
+Towards Dev
+
+Why Every Developer Should Try Rust
+What Rust is and why Rust is so popular among developers. Hope this article can help you have a general understanding of the Rust language.
+
+·
+13 min read
+·
+Oct 23
+75
+
+
+
+Tutorial: Rust Packet Protocol Handling with pnet lib
+Cyprien Avico
+Cyprien Avico
+
+Tutorial: Rust Packet Protocol Handling with pnet lib
+Welcome to the Rust Packet Protocol Handling Tutorial! In this tutorial, you’ll embark on a journey to learn how to handle packet protocols…
+7 min read
+·
+Oct 16
+6
+
+
+
+Was Rust Worth It?
+Jarrod Overson
+Jarrod Overson
+
+Was Rust Worth It?
+From JavaScript to Rust, three years in.
+8 min read
+·
+Oct 25
+1.6K
+
+24
+
+
+
+See more recommendations
+Help
+
+Status
+
+About
+
+Careers
+
+Blog
+
+Privacy
+
+Terms
+
+Text to speech
+
+Teams

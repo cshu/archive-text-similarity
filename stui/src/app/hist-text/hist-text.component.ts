@@ -14,11 +14,10 @@ export class HistTextComponent implements OnChanges {
   ngOnChanges(changes: SimpleChanges): void {
     //throw new Error('Method not implemented.');
   }//
-  items = ['Item 1', 'Item 2', 'Item 3', 'Item 4', 'Item 5'];
-  expandedIndex = 0;
   @Input() rows: SimResult[] = [];
   @Output() rowsChange = new EventEmitter<SimResult[]>();
   onDownload(hash: string) {
+    //fixme magic number for port
     open(location.protocol + '//' + location.hostname + ':8081/download/'+hash, '_blank')?.focus();
   }
 }

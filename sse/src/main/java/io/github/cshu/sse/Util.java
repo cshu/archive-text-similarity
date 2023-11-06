@@ -13,6 +13,7 @@ public class Util {
   public static final java.util.Base64.Encoder base64Encoder = java.util.Base64.getEncoder();
   public static final java.security.SecureRandom secureRandom = new java.security.SecureRandom();
   public static final ConcurrentHashMap<String, EmitterWithSeq> liveSse = new ConcurrentHashMap<>();
+  public static final String textPathPrefix = "/tmp/st/text/";
 
   public static String mkToken() {
     byte[] randomBytes = new byte[32];
@@ -27,7 +28,7 @@ public class Util {
     // var newsse = new NewSseid();
     // newsse.id = sseid;
     // var msg = gson.toJson(newsse);
-    SseEmitter emitter = new SseEmitter(900_000L);
+    SseEmitter emitter = new SseEmitter(900_000L); // fixme magic number
     var ews = new EmitterWithSeq(emitter, System.currentTimeMillis());
     emitter.onCompletion(
         () -> {
@@ -47,20 +48,20 @@ public class Util {
   }
 
   public static String readNameOfText(String hash) throws IOException {
-    var namefile = Paths.get("/tmp/st/text/" + hash + "/name");
+    var namefile = Paths.get(textPathPrefix + hash + "/name");
     return new String(Files.readAllBytes(namefile), StandardCharsets.UTF_8);
   }
 
   public static String readSimResult(String hash, String name, Gson gson) {
     try {
-      var resFiles = new File("/tmp/st/text/" + hash + "/result").listFiles();
+      var resFiles = new File(textPathPrefix + hash + "/result").listFiles();
       var lst = new ArrayList<SimPair>();
       for (var resFile : resFiles) {
         var similar =
             Double.parseDouble(
                 new String(Files.readAllBytes(resFile.toPath()), StandardCharsets.UTF_8));
         var other = resFile.getName();
-        var namefile = Paths.get("/tmp/st/text/" + other + "/name");
+        var namefile = Paths.get(textPathPrefix + other + "/name");
         if (!namefile.toFile().isFile()) continue;
         var fnm = new String(Files.readAllBytes(namefile), StandardCharsets.UTF_8);
         lst.add(new SimPair(other, fnm, similar));

@@ -19,8 +19,8 @@ public class RandSimController {
   @PostMapping("/rsim")
   public SimResp sim(@RequestBody Token id) {
     try {
-      if (!new File("/tmp/st/text/").exists()) return new SimResp("END");
-      var files = (new File("/tmp/st/text/")).listFiles();
+      if (!new File(Util.textPathPrefix).exists()) return new SimResp("END");
+      var files = (new File(Util.textPathPrefix)).listFiles();
       if (files.length == 0) {
         return new SimResp("END");
       }

@@ -37,15 +37,16 @@ public class StworkApplication {
     Gson gson = new Gson();
     Similarity sim = gson.fromJson(in, Similarity.class);
     try {
-      var files = (new File("/tmp/st/text/")).listFiles();
-      var hashinhexfnm = "/tmp/st/text/" + sim.hash();
+      final String textPathPrefix = "/tmp/st/text/";
+      var files = (new File(textPathPrefix)).listFiles();
+      var hashinhexfnm = textPathPrefix + sim.hash();
       (new File(hashinhexfnm + "/result")).mkdirs();
       byte[] blob = Files.readAllBytes(Paths.get(hashinhexfnm + "/data"));
       Random rand = new Random();
       final int haystackLen = 500; // fixme magic number
-      final int needleLen = 50;
-      final int thresholdNeedleMatch = 2;
-      final double thresholdForSim = 0.5;
+      final int needleLen = 50; // fixme magic number
+      final int thresholdNeedleMatch = 2; // fixme magic number
+      final double thresholdForSim = 0.5; // fixme magic number
       for (var otherfile : files) {
         if (otherfile.getName().equals(sim.hash())) continue;
         int simCount = 0;
@@ -72,7 +73,7 @@ public class StworkApplication {
           var strsimText = String.valueOf(strsim).getBytes(StandardCharsets.UTF_8);
           Files.write(Paths.get(hashinhexfnm + "/result/" + otherfile.getName()), strsimText);
           Files.write(
-              Paths.get("/tmp/st/text/" + otherfile.getName() + "/result/" + sim.hash()),
+              Paths.get(textPathPrefix + otherfile.getName() + "/result/" + sim.hash()),
               strsimText);
         }
       }

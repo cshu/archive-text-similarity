@@ -19,7 +19,7 @@ export class DefService {
   constructor(private http: HttpClient,) { }
 
   get url(): string {
-    //return (location.port === '4200' ? 'http://localhost:8888' : '') + this.path;
+    //fixme magic number for port
     return location.protocol + '//' + location.hostname + ':8081';
   }
   token(): Observable<RandomToken> {

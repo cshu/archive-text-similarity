@@ -1,0 +1,200 @@
+
+Search
+Write
+
+Eric
+Get unlimited access to the best of Medium for less than $1/week.
+Become a member
+
+
+Fix my Linux Wi-Fi
+Eric
+Eric
+
+1 min read
+·
+Sep 26
+
+
+
+
+
+Recently my laptop suddenly started to have a Wi-Fi issue. Sometimes it suddenly cannot connect to the internet. The intermittent disruption is very annoying so I googled for remedies.
+
+There are so many discussions on internet forums. Shockingly a large number of people had similar issues. And there are so many causes. Different people fix their problems in different ways.
+
+I tried wifi.powersave = 2 . This does not help. I also tried disabling ipv6. This does not help either.
+
+I continued googling till I saw somebody mentions downloading wi-fi driver from Intel. So I downloaded driver (ucode file) from Intel official website and then cp it into /lib/firmware . I rebooted my machine and checked dmesg , and saw the driver I copied is not loaded. Kernel still loading the original driver. (Probably because it has higher version number than the one I downloaded.) So I sudo removed those original drivers from /lib/firmware (actually I moved them to somewhere else, for backup). Now I reboot again and dmesg is finally showing that my driver is being loaded. And it seems this is the fix for me. My Linux no longer randomly disconnects.
+
+Linux
+Wifi
+
+
+
+
+Eric
+Written by Eric
+0 Followers
+Edit profile
+More from Eric
+Always follow the newest trend when choosing software?
+Eric
+Eric
+
+Always follow the newest trend when choosing software?
+I was watching primeagen reacts “I Love Neovim But I WONT Use It” and somebody in the video was mentioning that too many plugins in neovim…
+2 min read
+·
+Aug 27
+
+
+Intellectually manageable code and DRY
+Eric
+Eric
+
+Intellectually manageable code and DRY
+I read this post mentioning DRY is “pretty bad design system for code”:
+3 min read
+·
+Aug 3
+
+
+For peace of mind, use Rust
+Eric
+Eric
+
+For peace of mind, use Rust
+Rust and Golang are both great, but there are times when Rust can make things easier. And there is something about Rust that I have never…
+2 min read
+·
+Apr 16
+
+
+See all from Eric
+Recommended from Medium
+Automating Linux Scripts with systemd: A Quickstart Guide
+David Franko
+David Franko
+
+Automating Linux Scripts with systemd: A Quickstart Guide
+Automating scripts is like setting up a helpful robot that takes care of repetitive tasks for you. It saves you time and effort…
+4 min read
+·
+Sep 23
+7
+
+1
+
+
+
+Linux — Secure Shell (SSH)
+Sangkyu Lee
+Sangkyu Lee
+
+Linux — Secure Shell (SSH)
+Explore Secure Shell (SSH): Discover managing remote access with the secure shell service as I learn.
+7 min read
+·
+Oct 16
+96
+
+
+
+Lists
+
+
+
+General Coding Knowledge
+20 stories
+·
+535 saves
+
+
+Screenshot showing Google icons for their most popular apps, which they changed form the ones in the top row to the ones in the bottom. Apps for Gmail, Calendar, Drive, Docs and Meet.
+Staff Picks
+495 stories
+·
+420 saves
+10 Most Secure Linux Distros
+ByteBusterX
+ByteBusterX
+
+10 Most Secure Linux Distros
+Penguins
+6 min read
+·
+Oct 13
+116
+
+1
+
+
+
+12 Super Cool Terminal Easter Eggs You Need To Try
+Tin Plavec
+Tin Plavec
+
+12 Super Cool Terminal Easter Eggs You Need To Try
+Terminal is quite a powerful tool. You will often see people bragging about their knowledge to use terminal commands. Indeed, using…
+
+·
+7 min read
+·
+Oct 8
+130
+
+5
+
+
+
+Shell Scripting made Easy!!
+Vishweshwaran M J
+Vishweshwaran M J
+
+Shell Scripting made Easy!!
+The complete guide to Shell Scripting
+8 min read
+·
+Oct 24
+171
+
+5
+
+
+
+Shell: How to Implement Progress Bar to Give Feedback on Ongoing Process.
+Bruce Wen
+Bruce Wen
+
+in
+
+Code.Art
+
+Shell: How to Implement Progress Bar to Give Feedback on Ongoing Process.
+Learning by doing is always an effective way to learn.
+10 min read
+·
+Oct 14
+96
+
+
+
+See more recommendations
+Help
+
+Status
+
+About
+
+Careers
+
+Blog
+
+Privacy
+
+Terms
+
+Text to speech
+
+Teams

@@ -1,0 +1,243 @@
+
+Search
+Write
+
+Eric
+Get unlimited access to the best of Medium for less than $1/week.
+Become a member
+
+
+Always follow the newest trend when choosing software?
+Eric
+Eric
+
+2 min read
+·
+Aug 27
+
+
+
+
+
+I was watching primeagen reacts “I Love Neovim But I WONT Use It” and somebody in the video was mentioning that too many plugins in neovim increase the chance of running into bugs that can cause crash. And that reminds me a few years ago I tried to switch from vim to neovim but gave up halfway because I have to use plugin for achieving what’s native in vim (--servername). And I felt reluctant and also a bit tired about deeper configuration.
+
+So right now I am still using vim as my default. Is it the right choice? I don’t know. Maybe someday in the future I will regret I didn’t switch to neovim sooner.
+
+Neovim is trending right now. But I am still waiting for the tipping point to come to force me to switch to it. i.e. the day when NeoVim becomes the default editor (more often than Vim) on most Linux/Unix machines in this world.
+
+BTW I have spent so much time trying various editors in the past decade so I feel a bit tired of it and reluctant to change further.
+
+BTW ironically text editors should be the most basic and crucial software yet it is so difficult to build a good text editor. One of the reasons is the complexity of bytes segmentation to get grapheme clusters correctly (I always vaguely have a feeling that some part of the Unicode is designed wrong). Another reason is that GUI is never easy and full of twisted mistakes.
+
+If I generalize the question a bit, it becomes “Should I always follow the newest trend when choosing software?”
+
+The answer is it is okay to push forward and it is also okay to step back a bit. It is okay to rely on your intuition to find the area that makes you comfortable. Software being too old is likely to lose usefulness/compatibility. Software being too new has high chance of lacking stability, ubiquity, and thorough scrutiny. And it also depends on how much time you can spare. If you are busy you won’t be able to persuade yourself to explore too deeply. And it’s needless to say that when a new product happens to match exactly your latest particular requirement then that alone can be sufficient reason to push you forward.
+
+Examples of such decision are like choosing a version of JDK, a DB engine (PG/MySQL/Maria/Mongo/MSSQL/ORA/DB2), a terminal emulator (urxvt/alacritty/gnome-terminal/qterminal/st/iterm2), a version of python (Look how slow people around the world switch from 2 to 3), a file format (it seems both old & new formats are getting lots of hate. I’m talking about XML and YAML), and a framework.
+
+Software
+
+
+
+
+Eric
+Written by Eric
+0 Followers
+Edit profile
+More from Eric
+Fix my Linux Wi-Fi
+Eric
+Eric
+
+Fix my Linux Wi-Fi
+Recently my laptop suddenly started to have a Wi-Fi issue. Sometimes it suddenly cannot connect to the internet. The intermittent…
+1 min read
+·
+Sep 26
+
+
+For peace of mind, use Rust
+Eric
+Eric
+
+For peace of mind, use Rust
+Rust and Golang are both great, but there are times when Rust can make things easier. And there is something about Rust that I have never…
+2 min read
+·
+Apr 16
+
+
+Intellectually manageable code and DRY
+Eric
+Eric
+
+Intellectually manageable code and DRY
+I read this post mentioning DRY is “pretty bad design system for code”:
+3 min read
+·
+Aug 3
+
+
+See all from Eric
+Recommended from Medium
+Journal’s icon
+Nikhil Vemu
+Nikhil Vemu
+
+in
+
+Mac O’Clock
+
+Apple’s Journal App Released! — What’s Inside?
+Can this replace your existing Journal app? Let’s find out.
+
+·
+6 min read
+·
+Oct 28
+1.4K
+
+25
+
+
+
+JSON is incredibly slow: Here’s What’s Faster!
+Vaishnav Manoj
+Vaishnav Manoj
+
+in
+
+DataX Journal
+
+JSON is incredibly slow: Here’s What’s Faster!
+Unlocking the Need for Speed: Optimizing JSON Performance for Lightning-Fast Apps and Finding Alternatives to it!
+16 min read
+·
+Sep 28
+6.9K
+
+87
+
+
+
+Lists
+
+
+
+Our Favorite Productivity Advice
+9 stories
+·
+211 saves
+
+
+
+Medium Publications Accepting Story Submissions
+154 stories
+·
+942 saves
+
+
+
+Productivity
+230 stories
+·
+173 saves
+
+
+
+Natural Language Processing
+799 stories
+·
+365 saves
+4 Alternatives to Postman to Consider After Their Latest Update
+Valerie
+Valerie
+
+in
+
+Dare To Be Better
+
+4 Alternatives to Postman to Consider After Their Latest Update
+The recent changes to Postman made it almost impossible to use. Here are some options and alternatives.
+
+·
+3 min read
+·
+Oct 4
+1.95K
+
+36
+
+
+
+9 Time Management Mistakes You’re Making
+Parker Klein ✌️
+Parker Klein ✌️
+
+9 Time Management Mistakes You’re Making
+Time management mistakes you’re making and questions to reflect on from “Four Thousand Weeks” by Oliver Burkeman
+7 min read
+·
+Oct 29
+1.8K
+
+39
+
+
+
+Why I quit my job as Google’s Chief Decision Scientist
+Cassie Kozyrkov
+Cassie Kozyrkov
+
+Why I quit my job as Google’s Chief Decision Scientist
+What’s it like to go from being Chief Decision Scientist at Google to being, well… just me?
+
+·
+7 min read
+·
+Oct 28
+6.3K
+
+90
+
+
+
+Google Rejected Max Howell(Creator Of Homebrew) For Getting This Interview Question Wrong. Can You?
+Dr. Ashish Bamania
+Dr. Ashish Bamania
+
+in
+
+Level Up Coding
+
+Google Rejected Max Howell(Creator Of Homebrew) For Getting This Interview Question Wrong. Can You?
+Can you solve this Google interview question?
+
+·
+4 min read
+·
+Oct 3
+7K
+
+72
+
+
+
+See more recommendations
+Help
+
+Status
+
+About
+
+Careers
+
+Blog
+
+Privacy
+
+Terms
+
+Text to speech
+
+Teams

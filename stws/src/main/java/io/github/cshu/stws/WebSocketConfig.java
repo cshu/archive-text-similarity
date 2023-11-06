@@ -21,31 +21,3 @@ public class WebSocketConfig implements WebSocketConfigurer {
   }
 }
 
-//// @Configuration
-//// @EnableWebSocket
-//// @EnableWebSocketMessageBroker
-//// @EnableScheduling
-//// public class WebSocketConfig implements
-// /*WebSocketConfigurer,*/WebSocketMessageBrokerConfigurer {
-////
-//////  @Override
-//////  public void registerWebSocketHandlers(WebSocketHandlerRegistry registry) {
-//////    registry.addHandler(defHandler(), "/defHandler").setAllowedOrigins("*");
-//////  }
-//////
-//////  @Bean
-//////  public WebSocketHandler defHandler() {
-//////    return new DefHandler();
-//////  }
-////
-////  @Override
-////  public void configureMessageBroker(MessageBrokerRegistry config) {
-////    //config.enableSimpleBroker("/topic");
-////    config.setApplicationDestinationPrefixes("/app").enableSimpleBroker("/message");
-////    //config.setUserDestinationPrefix("/defHandler");
-////  }
-////  @Override
-////  public void registerStompEndpoints(StompEndpointRegistry registry) {
-////    registry.addEndpoint("/socket").allowCredentials(false).setAllowedOrigins("*").withSockJS();
-////  }
-//// }

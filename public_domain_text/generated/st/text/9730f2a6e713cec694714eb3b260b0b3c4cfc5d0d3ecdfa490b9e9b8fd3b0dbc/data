@@ -1,0 +1,305 @@
+
+Search
+Write
+
+Eric
+Get unlimited access to the best of Medium for less than $1/week.
+Become a member
+
+
+Intellectually manageable code and DRY
+Eric
+Eric
+
+3 min read
+·
+Aug 3
+
+
+
+
+
+I read this post mentioning DRY is “pretty bad design system for code”:
+
+https://twitter.com/crutchcorn/status/1686121401508630528
+
+It is not a new topic and has been debated for a long time. Especially there are actually people who are against shared library in certain cases https://stackoverflow.com/questions/48961000/why-shared-libraries-between-microservices-are-bad
+
+Personally I don’t really mind either preference as long as the code is intellectually manageable. In other words when a certain piece of code needs to be added/modified/removed, it does not require too much effort to code/test/understand.
+
+I always try to do DRY for my own code. While at the same time I can think of 2 arguments about that DRY is not 100% good:
+
+Example #1:
+
+If I really really try to reduce any “repeating” of code to the minimum, in other words, almost zero duplicate code for achieving a set of features in software, the eventual repo will have very condensed content. Almost every line of code looks quite unique.
+
+When trying to go to extremes, code can become painful to read. In contrast, better code is produced when trying to step back a little (with your intuition):
+
+//Good version (easy to read)
+fn do_q_w_e_r() {
+  do_q();
+  do_w();
+  do_e();
+  do_r();
+}
+fn do_q_w_e_t() {
+  do_q();
+  do_w();
+  do_e();
+  do_t();
+}
+fn do_q_w_y() {
+  do_q();
+  do_w();
+  do_y();
+}
+
+//Bad version (hard to read)
+fn do_q_w_e_r() {
+  do_q_w_e();
+  do_r();
+}
+fn do_q_w_e_t() {
+  do_q_w_e();
+  do_t();
+}
+fn do_q_w_y() {
+  do_q_w();
+  do_y();
+}
+fn do_q_w_e() {
+  do_q_w();
+  do_e();
+}
+fn do_q_w() {
+  do_q();
+  do_w();
+}
+Actually this “Bad version” above does not show how horrible the code looks in real-life situation. Because in real-life code you cannot squeeze a super long sentence into function name like do_q_w_e_r does. Naming things become a headache and with this kind of DRY I found myself wasting too much time aligning identifiers/function names to make them look natural.
+
+Example #2:
+
+In my repo, I could have a module with relatively small amount of code. Maybe just 1 file with 200 lines containing 2 functions. Something like:
+
+fn parse_utf16le_content(cont: Vec<u8>) -> SomeObj {
+  //...
+}
+
+fn parse_iso_2022_jp_content(cont: Vec<u8>) -> SomeObj {
+  //...
+}
+Assume the 2 functions contain very similar logic. But both are not too complicated, each around 100 lines. Should I try to reduce “repeating” by writing a few more functions shared by parse_utf16le_content and parse_iso_2022_jp_content ?
+
+If I add one more function do_x and call do_x from both functions, I can reduce “repeating”, but the problem is I need to make things more “generic”, which usually requires me being extra careful. Every time when I make a small modification to do_x , I must vigilantly remind myself that this function handles 2 different possibilities. UTF16 requires at least 2 bytes for any char. While iso-2022-jp use 1 byte for ASCII chars. If do_xhandles concepts related to such “char”, then some abstraction will be used (e.g. an enumwith 2 variants, or maybe even a traitimplemented by 2 structs handling data differently). In this case, I found myself constantly forcing my brain to think “abstractly”.
+
+And human brain turns out to be not super efficient when it comes to thinking “abstractly”. Say, I usually spend 5 seconds to finish the thinking in my head for X about UTF16. Similarly the counterpart for iso-2022-jp also takes me 5 seconds to think. So totally I need 10 seconds to finish thinking. But if I force myself to write a more “Generic” do_x for handling both cases together, it can take 30+ seconds for thinking. And don’t forget this slowdown happens every time when I try to make small modification to do_x .
+
+“Abstraction” indeed makes code more elegant when writing the part that involves a certain entire large-scale system. But not necessarily the suitable way when the logic involved is simple and a local small “namespace” can encapsulate everything with 2 functions.
+
+Small amount of duplication sometimes could the best choice for you. Causing least stress for human brains. Especially when I have 2 or 3 similar functions that can be placed very closely (typically in one small file). Because when I need to modify some logic in one function, it’s very likely I also need to do similar modification to the other few functions. Since they are just next to each other, I won’t miss them. And copying and pasting is very convenient.
+
+Duplicate (or similar) code scattered in many places in a huge repo is not intellectually manageable. But duplicate (or similar) code confined together inside a small scope/module/namespace is intellectually manageable.
+
+Programming
+
+
+
+
+Eric
+Written by Eric
+0 Followers
+Edit profile
+More from Eric
+Fix my Linux Wi-Fi
+Eric
+Eric
+
+Fix my Linux Wi-Fi
+Recently my laptop suddenly started to have a Wi-Fi issue. Sometimes it suddenly cannot connect to the internet. The intermittent…
+1 min read
+·
+Sep 26
+
+
+Always follow the newest trend when choosing software?
+Eric
+Eric
+
+Always follow the newest trend when choosing software?
+I was watching primeagen reacts “I Love Neovim But I WONT Use It” and somebody in the video was mentioning that too many plugins in neovim…
+2 min read
+·
+Aug 27
+
+
+For peace of mind, use Rust
+Eric
+Eric
+
+For peace of mind, use Rust
+Rust and Golang are both great, but there are times when Rust can make things easier. And there is something about Rust that I have never…
+2 min read
+·
+Apr 16
+
+
+See all from Eric
+Recommended from Medium
+JSON is incredibly slow: Here’s What’s Faster!
+Vaishnav Manoj
+Vaishnav Manoj
+
+in
+
+DataX Journal
+
+JSON is incredibly slow: Here’s What’s Faster!
+Unlocking the Need for Speed: Optimizing JSON Performance for Lightning-Fast Apps and Finding Alternatives to it!
+16 min read
+·
+Sep 28
+6.9K
+
+87
+
+
+
+4 Alternatives to Postman to Consider After Their Latest Update
+Valerie
+Valerie
+
+in
+
+Dare To Be Better
+
+4 Alternatives to Postman to Consider After Their Latest Update
+The recent changes to Postman made it almost impossible to use. Here are some options and alternatives.
+
+·
+3 min read
+·
+Oct 4
+1.95K
+
+36
+
+
+
+Lists
+
+
+
+General Coding Knowledge
+20 stories
+·
+535 saves
+
+
+
+It's never too late or early to start something
+15 stories
+·
+192 saves
+
+
+
+Coding & Development
+11 stories
+·
+258 saves
+
+
+Stories to Help You Grow as a Software Developer
+19 stories
+·
+517 saves
+How we reduced our docker build times by 40%
+Niels Claeys
+Niels Claeys
+
+in
+
+datamindedbe
+
+How we reduced our docker build times by 40%
+This post describes two ways to speed up building your Docker images: caching build info remotely, using the link option when copying files
+5 min read
+·
+Oct 4
+1.1K
+
+10
+
+
+
+Was Rust Worth It?
+Jarrod Overson
+Jarrod Overson
+
+Was Rust Worth It?
+From JavaScript to Rust, three years in.
+8 min read
+·
+Oct 25
+1.6K
+
+24
+
+
+
+Google Rejected Max Howell(Creator Of Homebrew) For Getting This Interview Question Wrong. Can You?
+Dr. Ashish Bamania
+Dr. Ashish Bamania
+
+in
+
+Level Up Coding
+
+Google Rejected Max Howell(Creator Of Homebrew) For Getting This Interview Question Wrong. Can You?
+Can you solve this Google interview question?
+
+·
+4 min read
+·
+Oct 3
+7K
+
+72
+
+
+
+Why I quit my job as Google’s Chief Decision Scientist
+Cassie Kozyrkov
+Cassie Kozyrkov
+
+Why I quit my job as Google’s Chief Decision Scientist
+What’s it like to go from being Chief Decision Scientist at Google to being, well… just me?
+
+·
+7 min read
+·
+Oct 28
+6.3K
+
+90
+
+
+
+See more recommendations
+Help
+
+Status
+
+About
+
+Careers
+
+Blog
+
+Privacy
+
+Terms
+
+Text to speech
+
+Teams

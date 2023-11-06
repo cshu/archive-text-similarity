@@ -1,4 +1,4 @@
-<div class="modal fade" id="defdialog" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<div class="modal fade" id="defdialog" tabindex="-1" aria-labelledby="modalLabel" aria-hidden="true">
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
@@ -41,11 +41,11 @@
 </div>
 <div *ngIf="htrows.length" class="titlecont"><span class="titlebghist"></span>Submitted Text</div>
 <app-hist-text [rows]="htrows" #ht></app-hist-text>
-<div class="load-container" *ngIf="htrows.length && !exhaustedAllText">
+<div class="load-container" *ngIf="sseid">
   <span *ngIf="tryingToLoadMore; else onmorebtn" class="spinner-border spinner-border-sm" role="status"
     aria-hidden="true"></span>
   <ng-template #onmorebtn>
-    <button type="button" class="btn btn-outline-info" (click)="onMore($event)">Try to explore more</button>
+    <button type="button" class="btn btn-outline-info" (click)="onMore($event)">Try to explore existing text</button>
   </ng-template>
 </div>
 <router-outlet></router-outlet>

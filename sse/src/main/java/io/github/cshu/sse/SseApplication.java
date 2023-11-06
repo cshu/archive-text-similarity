@@ -41,7 +41,7 @@ public class SseApplication {
 
   @KafkaListener(id = "finListen", topics = "finished")
   public void listen(String in) {
-    System.out.println("fin " + in);
+    // System.out.println("fin " + in);
     Util.sendResultToUser(in);
     // messagingTemplate.convertAndSendToUser(in, "/defHandler", "FINISHED",
     // headerAccessor.getMessageHeaders());

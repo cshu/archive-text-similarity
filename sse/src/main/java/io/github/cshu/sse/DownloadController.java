@@ -14,27 +14,26 @@ import org.springframework.web.bind.annotation.RestController;
 import com.google.gson.*;
 
 @RestController
-@RequestMapping(value = "/download",
-                produces = "text/plain")
+@RequestMapping(value = "/download", produces = "text/plain")
 public class DownloadController {
 
   @GetMapping("/{hash}")
-  public ResponseEntity<byte[]> sim(@PathVariable String hash)  throws IOException{
-    //try {
-      if (!hash.matches("[A-Za-z0-9]+")) {
-        // fixme do something about malicious request?
-        return new ResponseEntity<byte[]>(HttpStatus.BAD_REQUEST);
-      }
-      var hashinhexfnm = "/tmp/st/text/" + hash;
-      var blob = Files.readAllBytes(Paths.get(hashinhexfnm +"/data"));
-        HttpHeaders headers = new HttpHeaders();
-        headers.setContentType(MediaType.TEXT_PLAIN);
-        //headers.setContentDispositionFormData("attachment", "w.txt");
-        headers.setContentLength(blob.length);
-	return new ResponseEntity<byte[]>(blob, headers, HttpStatus.OK);
-    //} catch (Exception e) {
+  public ResponseEntity<byte[]> sim(@PathVariable String hash) throws IOException {
+    // try {
+    if (!hash.matches("[A-Za-z0-9]+")) {
+      // fixme do something about malicious request?
+      return new ResponseEntity<byte[]>(HttpStatus.BAD_REQUEST);
+    }
+    var hashinhexfnm = Util.textPathPrefix + hash;
+    var blob = Files.readAllBytes(Paths.get(hashinhexfnm + "/data"));
+    HttpHeaders headers = new HttpHeaders();
+    headers.setContentType(MediaType.TEXT_PLAIN);
+    // headers.setContentDispositionFormData("attachment", "w.txt");
+    headers.setContentLength(blob.length);
+    return new ResponseEntity<byte[]>(blob, headers, HttpStatus.OK);
+    // } catch (Exception e) {
     //  e.printStackTrace(System.err);
     //  return new SimResp("Unexpected error occurred");
-    //}
+    // }
   }
 }

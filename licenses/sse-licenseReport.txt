@@ -1,0 +1,174 @@
+Notice for packages
+
+
+Apache Kafka (3.4.1) - The Apache License, Version 2.0
+https://kafka.apache.org
+
+Apache Log4j API (2.20.0) - Apache License, Version 2.0
+The Apache Log4j API
+
+Apache Log4j to SLF4J Adapter (2.20.0) - Apache License, Version 2.0
+The Apache Log4j binding between Log4j 2 API and SLF4J.
+
+FindBugs-jsr305 (3.0.2) - The Apache Software License, Version 2.0
+JSR305 Annotations for Findbugs
+http://findbugs.sourceforge.net/
+
+Gson (2.10.1) - Apache-2.0
+
+          Jackson datatype: jdk8 (2.15.3) - The Apache Software License, Version 2.0
+          Add-on module for Jackson (http://jackson.codehaus.org) to support
+JDK 8 data types.
+
+Jackson datatype: JSR310 (2.15.3) - The Apache Software License, Version 2.0
+Add-on module to support JSR-310 (Java 8 Date & Time API) data types.
+
+Jackson-annotations (2.15.3) - The Apache Software License, Version 2.0
+Core annotations used for value types, used by Jackson data binding package.
+https://github.com/FasterXML/jackson
+
+Jackson-core (2.15.3) - The Apache Software License, Version 2.0
+Core Jackson processing abstractions (aka Streaming API), implementation for JSON
+https://github.com/FasterXML/jackson-core
+
+jackson-databind (2.15.3) - The Apache Software License, Version 2.0
+General data-binding functionality for Jackson: works on core streaming API
+https://github.com/FasterXML/jackson
+
+          Jackson-module-parameter-names (2.15.3) - The Apache Software License, Version 2.0
+          Add-on module for Jackson (http://jackson.codehaus.org) to support
+introspection of method/constructor parameter names, without having to add explicit property name annotation.
+
+Jakarta Annotations API (2.1.1) - EPL 2.0,GPL2 w/ CPE
+Jakarta Annotations API
+https://projects.eclipse.org/projects/ee4j.ca
+
+JUL to SLF4J bridge (2.0.9) - MIT License
+JUL to SLF4J bridge
+http://www.slf4j.org
+
+Logback Classic Module (1.4.11) - Eclipse Public License - v 1.0,GNU Lesser General Public License
+logback-classic module
+
+Logback Core Module (1.4.11) - Eclipse Public License - v 1.0,GNU Lesser General Public License
+logback-core module
+
+LZ4 and xxHash (1.8.0) - The Apache Software License, Version 2.0
+Java ports and bindings of the LZ4 compression algorithm and the xxHash hashing algorithm
+https://github.com/lz4/lz4-java
+
+micrometer-commons (1.11.5) - The Apache Software License, Version 2.0
+Module containing common code
+https://github.com/micrometer-metrics/micrometer
+
+micrometer-observation (1.11.5) - The Apache Software License, Version 2.0
+Module containing Observation related code
+https://github.com/micrometer-metrics/micrometer
+
+SLF4J API Module (2.0.9) - MIT License
+The slf4j API
+http://www.slf4j.org
+
+SnakeYAML (1.33) - Apache License, Version 2.0
+YAML 1.1 parser and emitter for Java
+https://bitbucket.org/snakeyaml/snakeyaml
+
+snappy-java (1.1.8.4) - Apache-2.0
+snappy-java: A fast compression/decompression library
+https://github.com/xerial/snappy-java
+
+Spring AOP (6.0.13) - Apache License, Version 2.0
+Spring AOP
+https://github.com/spring-projects/spring-framework
+
+Spring Beans (6.0.13) - Apache License, Version 2.0
+Spring Beans
+https://github.com/spring-projects/spring-framework
+
+Spring Commons Logging Bridge (6.0.13) - Apache License, Version 2.0
+Spring Commons Logging Bridge
+https://github.com/spring-projects/spring-framework
+
+Spring Context (6.0.13) - Apache License, Version 2.0
+Spring Context
+https://github.com/spring-projects/spring-framework
+
+Spring Core (6.0.13) - Apache License, Version 2.0
+Spring Core
+https://github.com/spring-projects/spring-framework
+
+Spring Expression Language (SpEL) (6.0.13) - Apache License, Version 2.0
+Spring Expression Language (SpEL)
+https://github.com/spring-projects/spring-framework
+
+Spring Kafka Support (3.0.12) - Apache License, Version 2.0
+Spring Kafka Support
+https://github.com/spring-projects/spring-kafka
+
+Spring Messaging (6.0.13) - Apache License, Version 2.0
+Spring Messaging
+https://github.com/spring-projects/spring-framework
+
+        Spring Retry (${revision}) - Apache 2.0
+        Spring Retry provides an abstraction around retrying failed operations, with an
+emphasis on declarative control of the process and policy-based behaviour that is
+easy to extend and customize. For instance, you can configure a plain POJO
+operation to retry if it fails, based on the type of exception, and with a fixed
+or exponential backoff.
+        https://www.springsource.org
+
+Spring Transaction (6.0.13) - Apache License, Version 2.0
+Spring Transaction
+https://github.com/spring-projects/spring-framework
+
+Spring Web (6.0.13) - Apache License, Version 2.0
+Spring Web
+https://github.com/spring-projects/spring-framework
+
+Spring Web MVC (6.0.13) - Apache License, Version 2.0
+Spring Web MVC
+https://github.com/spring-projects/spring-framework
+
+spring-boot (3.1.5) - Apache License, Version 2.0
+Spring Boot
+https://spring.io/projects/spring-boot
+
+spring-boot-autoconfigure (3.1.5) - Apache License, Version 2.0
+Spring Boot AutoConfigure
+https://spring.io/projects/spring-boot
+
+spring-boot-starter (3.1.5) - Apache License, Version 2.0
+Core starter, including auto-configuration support, logging and YAML
+https://spring.io/projects/spring-boot
+
+spring-boot-starter-json (3.1.5) - Apache License, Version 2.0
+Starter for reading and writing json
+https://spring.io/projects/spring-boot
+
+spring-boot-starter-logging (3.1.5) - Apache License, Version 2.0
+Starter for logging using Logback. Default logging starter
+https://spring.io/projects/spring-boot
+
+spring-boot-starter-tomcat (3.1.5) - Apache License, Version 2.0
+Starter for using Tomcat as the embedded servlet container. Default servlet container starter used by spring-boot-starter-web
+https://spring.io/projects/spring-boot
+
+spring-boot-starter-web (3.1.5) - Apache License, Version 2.0
+Starter for building web, including RESTful, applications using Spring MVC. Uses Tomcat as the default embedded container
+https://spring.io/projects/spring-boot
+
+tomcat-embed-core (10.1.15) - Apache License, Version 2.0
+Core Tomcat implementation
+https://tomcat.apache.org/
+
+tomcat-embed-el (10.1.15) - Apache License, Version 2.0
+Core Tomcat implementation
+https://tomcat.apache.org/
+
+tomcat-embed-websocket (10.1.15) - Apache License, Version 2.0
+Core Tomcat implementation
+https://tomcat.apache.org/
+
+zstd-jni (1.5.2-1) - BSD 2-Clause License
+JNI bindings for Zstd native library that provides fast and high compression lossless algorithm for Java and all JVM languages.
+https://github.com/luben/zstd-jni

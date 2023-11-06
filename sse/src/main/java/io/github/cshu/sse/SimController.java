@@ -26,7 +26,7 @@ public class SimController {
         // fixme do something about malicious request?
         return new SimResp("ERROR");
       }
-      var hashinhexfnm = "/tmp/st/text/" + similarity.hash();
+      var hashinhexfnm = Util.textPathPrefix + similarity.hash();
       Files.write(
           Paths.get(hashinhexfnm + "/name"), similarity.name().getBytes(StandardCharsets.UTF_8));
       // var hashdir = new File(hashinhexfnm);
