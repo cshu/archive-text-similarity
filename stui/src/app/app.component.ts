@@ -106,6 +106,7 @@ export class AppComponent {
     this.def.token().subscribe((data: RandomToken) => {
       this.sseid = data.token;
       if (this.sock && this.sock.readyState == WebSocket.OPEN) this.allowUpload = true;
+      //fixme magic number for port
       this.es = new EventSource(location.protocol + '//' + location.hostname + ':8081/sse?id=' + encodeURIComponent(this.sseid));
       this.es.onmessage = (ev) => {
         console.log('onmsg', ev.data);
